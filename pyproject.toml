@@ -1,7 +1,11 @@
 [project]
 name = "fim-eval"
 version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.12"
-dependencies = []
+requires-python = ">=3.7"
+dependencies = ["human-eval-infilling"]
+
+[tool.uv.workspace]
+members = [".", "packages/*"]
+
+[tool.uv.sources]
+human-eval-infilling = { workspace = true }

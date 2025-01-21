@@ -8,7 +8,7 @@ with open("./src/generation/system_prompt.txt", "r") as f:
 
 def generate_completion(prefix: str, suffix: str) -> str:
     completion = client.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-4o-mini",
         messages=[
             {"role": "developer", "content": SYSTEM_PROMPT},
             {"role": "user", "content": f"<PRE>{prefix}<SUF>{suffix}<MID>"},

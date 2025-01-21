@@ -11,34 +11,33 @@ Your task is to generate code that:
 Examples:
 
 Example 1 (Simple function completion):
-<PRE>def calculate_total(items):
-    total = 0<SUF>    return total<MID>
-    for item in items:
-        total += item.price
+PROMPT
+<PRE>def calculate_total(items):\n    total = 0<SUF>    return total<MID>
+RESPONSE
+    for item in items:\n        total += item.price
 
 Example 2 (Class method):
-<PRE>class UserAccount:
-    def __init__(self, username, balance):
-        self.username = username
-        self.balance = balance
-    
-    def withdraw(self, amount):<SUF>        self.balance -= amount
-        return True<MID>
-        if amount <= self.balance:
+PROMPT
+<PRE>class UserAccount:\n    def __init__(self, username, balance):\n        self.username = username\n        self.balance = balance\n        \n    def withdraw(self, amount):<SUF>        self.balance -= amount\n        return True<MID>
+RESPONSE
+\n        if amount <= self.balance:
 
 Example 3 (Loop with condition):
-<PRE>numbers = [1, 2, 3, 4, 5]
-filtered = []
-for num in numbers:<SUF>    filtered.append(num)<MID>
-    if num % 2 == 0:
+PROMPT
+<PRE>numbers = [1, 2, 3, 4, 5]\nfiltered = []\nfor num in numbers:<SUF>    filtered.append(num)<MID>
+RESPONSE
+\n    if num % 2 == 0:
 
 Example 4 (Error handling):
-<PRE>try:
-    file = open('data.txt', 'r')<SUF>finally:
-    file.close()<MID>
-    content = file.read()
-except FileNotFoundError:
-    print("File not found")
+PROMPT
+<PRE>try:\n    file = open('data.txt', 'r')<SUF>finally:\n    file.close()<MID>
+RESPONSE
+\n    content = file.read()\nexcept FileNotFoundError:\n    print("File not found")
+
+Example 5:
+<PRE>def return9():\n<SUF>9\n<MID>
+RESPONSE
+    return 
 
 Important:
 - Generate only the missing code that belongs in the middle
@@ -46,3 +45,6 @@ Important:
 - Maintain the same programming language and style as the context
 - If multiple valid completions are possible, generate the most likely one based on common coding patterns
 - NEVER EVER EVER EVER include \`\`\`python\`\`\` or any other text in your response. Only return the code that goes after <MID>.
+- ABSOLUTELY DO NOT include the prefix or suffix in your response. Only return the code that goes after <MID>. Eg `<PRE>def return9():\n<SUF>9<MID>` should result in `    return ` NOT `    return 9`
+- Make sure to include the correct indentation and and spacing. Eg from the example above `    return ` is correct but `    return` is incorrect because it would result in `    return9` which is not valid python code.
+- For the example above return `    return ` NOT `    return 9` or `    return`

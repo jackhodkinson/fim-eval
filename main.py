@@ -5,11 +5,24 @@ from human_eval_infilling.evaluate_functional_correctness import (
 from src.generation.generate import generate_samples
 
 BENCHMARK_NAME = "test"
+MODEL = "dummy"
 
 
 def main():
-    generate_samples(BENCHMARK_NAME, 1, "data/example_samples.jsonl")
-    evaluate_functional_correctness(BENCHMARK_NAME, "data/example_samples.jsonl")
+    generated_file = f"data/{MODEL}_{BENCHMARK_NAME}.jsonl"
+
+    generate_samples(
+        BENCHMARK_NAME,
+        num_samples_per_task=1,
+        output_file=generated_file,
+        model=MODEL,
+    )
+    pass_at_k = evaluate_functional_correctness(
+        BENCHMARK_NAME,
+        generated_file,
+        n_workers=8,
+    )
+    print(pass_at_k)
 
 
 if __name__ == "__main__":

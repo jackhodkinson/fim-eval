@@ -1,14 +1,17 @@
 {
-    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
-    "python.linting.enabled": true,
-    "python.linting.ruffEnabled": true,
-    "python.formatting.provider": "none",
-    "editor.formatOnSave": true,
-    "[python]": {
+  "python.analysis.extraPaths": [
+      "${workspaceFolder}/packages/human-eval-infilling"
+  ],
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "python.linting.enabled": true,
+  "python.linting.ruffEnabled": true,
+  "python.formatting.provider": "none",
+  "editor.formatOnSave": true,
+  "[python]": {
       "editor.defaultFormatter": "charliermarsh.ruff",
       "editor.codeActionsOnSave": {
-        "source.fixAll": true,
-        "source.organizeImports": true
+          "source.fixAll": true,
+          "source.organizeImports": true
       }
-    }
   }
+}

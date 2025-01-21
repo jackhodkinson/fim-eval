@@ -2,7 +2,10 @@
 name = "fim-eval"
 version = "0.1.0"
 requires-python = ">=3.7"
-dependencies = ["human-eval-infilling"]
+dependencies = [
+    "human-eval-infilling",
+    "openai>=1.59.9",
+]
 
 [tool.uv.workspace]
 members = [".", "packages/*"]

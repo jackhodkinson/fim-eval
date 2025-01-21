@@ -6,8 +6,4 @@ This repository contains the code for evaluating the functional correctness of F
 
 ## Setup
 
-Install the forked oai git submodule:
-
-```
-git clone https://github.com/jackhodkinson/human-eval-infilling
-```
+Run `uv sync` to install the dependencies.

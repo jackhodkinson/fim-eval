@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains the code for evaluating the functional correctness of FIM-model generated code.
+This repository contains the code for evaluating the functional correctness of FIM-model generated code using a forked version of the [human-eval-infilling](https://github.com/openai/human-eval-infilling/tree/master) tool from OpenAI.
 
 ## Setup
 

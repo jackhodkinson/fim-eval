@@ -4,8 +4,10 @@ from human_eval_infilling.evaluate_functional_correctness import (
 
 from src.generation.generate import generate_samples
 
-BENCHMARK_NAME = "test"
-MODEL = "dummy"
+# BENCHMARK_NAME: single-line, multi-line, random-span, random-span-light, test
+BENCHMARK_NAME = "single-line"
+MODEL = "gpt"  # dummy, gpt
+NUM_TASKS = 10
 
 
 def main():
@@ -16,13 +18,15 @@ def main():
         num_samples_per_task=1,
         output_file=generated_file,
         model=MODEL,
+        num_tasks=NUM_TASKS,
     )
-    pass_at_k = evaluate_functional_correctness(
+    pass_at_k, total_cost = evaluate_functional_correctness(
         BENCHMARK_NAME,
         generated_file,
         n_workers=8,
+        num_tasks=NUM_TASKS,
     )
-    print(pass_at_k)
+    print(pass_at_k, f"\nTotal cost: {total_cost}")
 
 
 if __name__ == "__main__":

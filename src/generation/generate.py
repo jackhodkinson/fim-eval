@@ -1,3 +1,6 @@
+from itertools import islice
+
+import tqdm
 from human_eval_infilling.data import read_problems, write_jsonl
 
 from src.generation.dummy import generate_completion as dummy_generate_completion
@@ -14,21 +17,31 @@ def generate_samples(
     num_samples_per_task: int,
     output_file: str,
     model: str,
+    num_tasks: int = None,
 ) -> list[dict]:
+    print(
+        f"Generating {num_samples_per_task} X {num_tasks if num_tasks is not None else 'all'} samples for {benchmark_name} with {model} model"
+    )
     assert model in MODELS, f"Model {model} not supported"
     generate_completion = MODELS[model]
     problems = read_problems(benchmark_name=benchmark_name)
+    if num_tasks is not None:
+        problems = dict(islice(problems.items(), num_tasks))
 
-    samples = [
-        dict(
-            task_id=task_id,
-            completion=generate_completion(
+    samples = []
+    for task_id in tqdm.tqdm(problems):
+        for _ in range(num_samples_per_task):
+            completion, cost = generate_completion(
                 problems[task_id]["prompt"], problems[task_id]["suffix"]
-            ),
-        )
-        for task_id in problems
-        for _ in range(num_samples_per_task)
-    ]
+            )
+            samples.append(
+                {
+                    "task_id": task_id,
+                    "completion": completion,
+                    "cost": cost,
+                }
+            )
+
     write_jsonl(output_file, samples)
     return samples
 

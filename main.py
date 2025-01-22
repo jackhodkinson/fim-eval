@@ -8,6 +8,7 @@ from src.generation.generate import generate_samples
 BENCHMARK_NAME = "single-line"
 MODEL = "gpt"  # dummy, gpt
 NUM_TASKS = 10
+NUM_SAMPLES_PER_TASK = 10
 
 
 def main():
@@ -15,7 +16,7 @@ def main():
 
     generate_samples(
         BENCHMARK_NAME,
-        num_samples_per_task=1,
+        num_samples_per_task=NUM_SAMPLES_PER_TASK,
         output_file=generated_file,
         model=MODEL,
         num_tasks=NUM_TASKS,
@@ -23,10 +24,10 @@ def main():
     evaluate_functional_correctness(
         BENCHMARK_NAME,
         generated_file,
+        k=[1, 3, 10],
         n_workers=8,
         num_tasks=NUM_TASKS,
     )
-    
 
 
 if __name__ == "__main__":

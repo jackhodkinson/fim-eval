@@ -5,6 +5,7 @@ requires-python = ">=3.7"
 dependencies = [
     "human-eval-infilling",
     "openai>=1.59.9",
+    "rich>=13.9.4",
 ]
 
 [tool.uv.workspace]

@@ -3,6 +3,7 @@ from itertools import islice
 import tqdm
 from human_eval_infilling.data import read_problems, write_jsonl
 
+from src.generation.base import GenerateResponse
 from src.generation.dummy import generate_completion as dummy_generate_completion
 from src.generation.gpt import generate_completion as gpt_generate_completion
 
@@ -31,16 +32,11 @@ def generate_samples(
     samples = []
     for task_id in tqdm.tqdm(problems):
         for _ in range(num_samples_per_task):
-            completion, cost = generate_completion(
+            response: GenerateResponse = generate_completion(
                 problems[task_id]["prompt"], problems[task_id]["suffix"]
             )
-            samples.append(
-                {
-                    "task_id": task_id,
-                    "completion": completion,
-                    "cost": cost,
-                }
-            )
+            sample = {**response, "task_id": task_id}
+            samples.append(sample)
 
     write_jsonl(output_file, samples)
     return samples

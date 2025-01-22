@@ -1,6 +1,8 @@
-from typing import Tuple
-
 from openai import OpenAI
+
+from src.generation.base import GenerateResponse
+
+MODEL = "gpt-4o-mini"
 
 client = OpenAI()
 
@@ -8,9 +10,9 @@ with open("./src/generation/system_prompt.txt", "r") as f:
     SYSTEM_PROMPT = f.read()
 
 
-def generate_completion(prefix: str, suffix: str) -> Tuple[str, float]:
+def generate_completion(prefix: str, suffix: str) -> GenerateResponse:
     completion = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model=MODEL,
         messages=[
             {"role": "developer", "content": SYSTEM_PROMPT},
             {"role": "user", "content": f"<PRE>{prefix}<SUF>{suffix}<MID>"},
@@ -23,7 +25,13 @@ def generate_completion(prefix: str, suffix: str) -> Tuple[str, float]:
         completion.usage.completion_tokens * output_token_cost
         + completion.usage.prompt_tokens * input_token_cost
     )
-    return completion.choices[0].message.content, cost
+    return GenerateResponse(
+        completion=completion.choices[0].message.content,
+        input_tokens=completion.usage.prompt_tokens,
+        output_tokens=completion.usage.completion_tokens,
+        model=MODEL,
+        cost=cost,
+    )
 
 
 if __name__ == "__main__":

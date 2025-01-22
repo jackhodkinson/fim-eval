@@ -5,11 +5,13 @@ from human_eval_infilling.data import read_problems, write_jsonl
 
 from src.generation.base import GenerateResponse
 from src.generation.dummy import generate_completion as dummy_generate_completion
+from src.generation.gemini import generate_completion as gemini_generate_completion
 from src.generation.gpt import generate_completion as gpt_generate_completion
 
 MODELS = {
     "gpt": gpt_generate_completion,
     "dummy": dummy_generate_completion,
+    "gemini": gemini_generate_completion,
 }
 
 

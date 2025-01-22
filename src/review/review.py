@@ -7,7 +7,7 @@ from rich import print
 from rich.console import Console
 
 BENCHMARK_NAME = "single-line"
-MODEL = "gpt"
+MODEL = "gemini"
 
 test_path = BENCHMARK_NAME_TO_PATH[BENCHMARK_NAME]
 

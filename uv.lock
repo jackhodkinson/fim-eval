@@ -21,6 +21,24 @@ wheels = [
 ]
 
 [[package]]
+name = "anthropic"
+version = "0.44.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyio" },
+    { name = "distro" },
+    { name = "httpx" },
+    { name = "jiter" },
+    { name = "pydantic" },
+    { name = "sniffio" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/eb/34/ed394012684f7d6e36bb36c8b7c82b438f0ef189d2afd3d0090b85801211/anthropic-0.44.0.tar.gz", hash = "sha256:dc5c91c8b0463f97513d2e79350511ef295a56910bac4fbbe9491016c71f2ef0", size = 196065 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d3/ad/c3c7d199eedc0b6d4621deed8dc1ed252ce399400cd76f1da098f1f50e56/anthropic-0.44.0-py3-none-any.whl", hash = "sha256:7087ccfc8ed7b164f971e094495cd3aeabac1e435fa393480cc146c87946c21c", size = 208634 },
+]
+
+[[package]]
 name = "anyio"
 version = "4.8.0"
 source = { registry = "https://pypi.org/simple" }
@@ -110,6 +128,7 @@ name = "fim-eval"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "anthropic" },
     { name = "google-generativeai" },
     { name = "human-eval-infilling" },
     { name = "openai" },
@@ -118,6 +137,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "anthropic", specifier = ">=0.44.0" },
     { name = "google-generativeai", specifier = ">=0.8.4" },
     { name = "human-eval-infilling", editable = "packages/human-eval-infilling" },
     { name = "openai", specifier = ">=1.59.9" },

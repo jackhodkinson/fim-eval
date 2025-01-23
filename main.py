@@ -6,9 +6,9 @@ from src.generation.generate import generate_samples
 
 # BENCHMARK_NAME: single-line, multi-line, random-span, random-span-light, test
 BENCHMARK_NAME = "single-line"
-MODEL = "gemini"  # dummy, gpt, gemini
-NUM_TASKS = 10
-NUM_SAMPLES_PER_TASK = 10
+MODEL = "claude"  # dummy, gpt, gemini, claude
+NUM_TASKS = 100
+NUM_SAMPLES_PER_TASK = 5
 
 
 def main():
@@ -24,7 +24,7 @@ def main():
     evaluate_functional_correctness(
         BENCHMARK_NAME,
         generated_file,
-        k=[1, 3, 10],
+        k=[1, 3, 5],
         n_workers=8,
         num_tasks=NUM_TASKS,
     )

@@ -52,16 +52,19 @@ def main():
             failed_example_by_task_id[result["task_id"]] = result
 
     for task_id in always_failed_tasks:
-        prefix = tasks[task_id]["prompt"]
-        suffix = tasks[task_id]["suffix"]
+        task = tasks[task_id]
+        prefix = task["prompt"]
+        suffix = task["suffix"]
         console.print(
             "=" * console.width
             + f"\n[dim]Task {task_id}:[/dim]\n"
             + "=" * console.width
         )
         console.print(prefix + "|" + suffix)
-        console.print("-" * console.width)
         failed_example = failed_example_by_task_id[task_id]
+        console.print("-" * console.width)
+        console.print(task["test"] + failed_example["result"])
+        console.print("-" * console.width)
         middle = failed_example["completion"]
         console.print(prefix + f"[red]{middle}[/red]" + suffix)
 

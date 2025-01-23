@@ -10,6 +10,8 @@ The goal is to compare baseline performance of GPT, Claude, and Gemini models wi
 
 Run `uv sync` to install the dependencies.
 
+If you use the `llama` model, you need to have `ollama` installed and running.
+
 ## Usage
 
 Modify the `main.py` file to set the model, benchmark, and other parameters.

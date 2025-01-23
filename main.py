@@ -6,7 +6,7 @@ from src.generation.generate import generate_samples
 
 # BENCHMARK_NAME: single-line, multi-line, random-span, random-span-light, test
 BENCHMARK_NAME = "single-line"
-MODEL = "claude"  # dummy, gpt, gemini, claude
+MODEL = "llama"  # dummy, gpt, gemini, claude, llama
 NUM_TASKS = 100
 NUM_SAMPLES_PER_TASK = 5
 

@@ -18,7 +18,7 @@ model = genai.GenerativeModel(model_name=MODEL, system_instruction=SYSTEM_PROMPT
 
 # Add rate limiting queue and parameters
 _request_times = deque(maxlen=15)  # Store timestamps of last 15 requests
-_rpm_limit = 15  # 15 requests per minute
+_rpm_limit = 2_000  # 15 requests per minute
 
 
 def _wait_for_rate_limit():

@@ -1,3 +1,4 @@
+from functools import partial
 from itertools import islice
 
 import tqdm
@@ -15,7 +16,8 @@ MODELS = {
     "dummy": dummy_generate_completion,
     "gemini": gemini_generate_completion,
     "claude": claude_generate_completion,
-    "llama": llama_generate_completion,
+    "llama": partial(llama_generate_completion, model="codellama:latest"),
+    "codellama-7b-code": partial(llama_generate_completion, model="codellama:7b-code"),
 }
 
 

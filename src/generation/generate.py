@@ -18,6 +18,10 @@ MODELS = {
     "claude": claude_generate_completion,
     "llama": partial(llama_generate_completion, model="codellama:latest"),
     "codellama-7b-code": partial(llama_generate_completion, model="codellama:7b-code"),
+    "deepseek-coder-v2:16b-lite-base-q4_0": partial(
+        llama_generate_completion,
+        model="deepseek-coder-v2:16b-lite-base-q4_0",
+    ),
 }
 
 
@@ -27,7 +31,7 @@ def generate_samples(
     output_file: str,
     model: str,
     num_tasks: int = None,
-    temperature: float = 0.0,
+    temperature: float = 0.2,
 ) -> list[dict]:
     print(
         f"Generating {num_samples_per_task} X {num_tasks if num_tasks is not None else 'all'} samples for {benchmark_name} with {model} model"

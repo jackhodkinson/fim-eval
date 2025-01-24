@@ -8,7 +8,7 @@ from src.generation.generate import generate_samples
 
 # BENCHMARK_NAME: single-line, multi-line, random-span, random-span-light, test
 BENCHMARK_NAME = "single-line"
-MODEL = "codellama-7b-code"  # dummy, gpt, gemini, claude, llama
+MODEL = "deepseek-coder-v2:16b-lite-base-q4_0"  # dummy, gpt, gemini, claude, llama
 NUM_TASKS = 100
 NUM_SAMPLES_PER_TASK = 5
 

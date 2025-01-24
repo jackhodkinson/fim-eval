@@ -37,7 +37,9 @@ def _wait_for_rate_limit():
     _request_times.append(datetime.now())
 
 
-def generate_completion(prefix: str, suffix: str, *_args) -> GenerateResponse:
+def generate_completion(
+    prefix: str, suffix: str, temperature: float
+) -> GenerateResponse:
     _wait_for_rate_limit()  # Add rate limiting check
     response = model.generate_content(f"<PRE>{prefix}<SUF>{suffix}<MID>")
 

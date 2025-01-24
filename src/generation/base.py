@@ -9,5 +9,7 @@ class GenerateResponse(TypedDict):
     cost: float
 
 
-def generate_completion(prefix: str, suffix: str) -> GenerateResponse:
+def generate_completion(
+    prefix: str, suffix: str, temperature: float
+) -> GenerateResponse:
     raise NotImplementedError("Base class")

@@ -10,7 +10,9 @@ with open("./src/generation/system_prompt.txt", "r") as f:
     SYSTEM_PROMPT = f.read()
 
 
-def generate_completion(prefix: str, suffix: str, *_args) -> GenerateResponse:
+def generate_completion(
+    prefix: str, suffix: str, temperature: float
+) -> GenerateResponse:
     completion = client.chat.completions.create(
         model=MODEL,
         messages=[

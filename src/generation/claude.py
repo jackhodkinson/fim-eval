@@ -10,7 +10,9 @@ with open("./src/generation/system_prompt.txt", "r") as f:
     SYSTEM_PROMPT = f.read()
 
 
-def generate_completion(prefix: str, suffix: str, *_args) -> GenerateResponse:
+def generate_completion(
+    prefix: str, suffix: str, temperature: float
+) -> GenerateResponse:
     message = client.messages.create(
         model="claude-3-5-sonnet-20241022",
         max_tokens=1024,

@@ -27,6 +27,7 @@ def generate_samples(
     output_file: str,
     model: str,
     num_tasks: int = None,
+    temperature: float = 0.0,
 ) -> list[dict]:
     print(
         f"Generating {num_samples_per_task} X {num_tasks if num_tasks is not None else 'all'} samples for {benchmark_name} with {model} model"
@@ -41,7 +42,9 @@ def generate_samples(
     for task_id in tqdm.tqdm(problems):
         for _ in range(num_samples_per_task):
             response: GenerateResponse = generate_completion(
-                problems[task_id]["prompt"], problems[task_id]["suffix"]
+                problems[task_id]["prompt"],
+                problems[task_id]["suffix"],
+                temperature=temperature,
             )
             sample = {**response, "task_id": task_id}
             samples.append(sample)

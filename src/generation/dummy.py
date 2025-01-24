@@ -1,7 +1,7 @@
 from src.generation.base import GenerateResponse
 
 
-def generate_completion(prefix: str, suffix: str) -> GenerateResponse:
+def generate_completion(prefix: str, suffix: str, *_args) -> GenerateResponse:
     """
     Dummy generatino to test the pipeline without incurring costs.
     """

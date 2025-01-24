@@ -11,7 +11,9 @@ with open("./src/generation/system_prompt.txt", "r") as f:
     SYSTEM_PROMPT = f.read()
 
 
-def generate_completion(prefix: str, suffix: str, model: str) -> GenerateResponse:
+def generate_completion(
+    prefix: str, suffix: str, model: str, temperature: float = 0.0
+) -> GenerateResponse:
     assert model in ["codellama:latest", "codellama:7b-code"]
     messages = []
     if model == "codellama:latest":
@@ -26,7 +28,7 @@ def generate_completion(prefix: str, suffix: str, model: str) -> GenerateRespons
     response = client.chat.completions.create(
         model=model,
         messages=messages,
-        temperature=0.0,
+        temperature=temperature,
     )
 
     # Ollama doesn't provide token counts directly, so we'll estimate

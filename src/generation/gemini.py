@@ -37,7 +37,7 @@ def _wait_for_rate_limit():
     _request_times.append(datetime.now())
 
 
-def generate_completion(prefix: str, suffix: str) -> GenerateResponse:
+def generate_completion(prefix: str, suffix: str, *_args) -> GenerateResponse:
     _wait_for_rate_limit()  # Add rate limiting check
     response = model.generate_content(f"<PRE>{prefix}<SUF>{suffix}<MID>")
 
@@ -57,4 +57,7 @@ def generate_completion(prefix: str, suffix: str) -> GenerateResponse:
 
 
 if __name__ == "__main__":
-    print(generate_completion("def add(a, b):", "a + b"))
+    prefix = "def add(a, b):"
+    suffix = "a + b"
+    response = generate_completion(prefix, suffix)
+    print(prefix + response["completion"] + suffix)

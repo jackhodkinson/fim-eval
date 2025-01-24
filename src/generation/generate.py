@@ -17,7 +17,7 @@ MODELS = {
     "gemini": gemini_generate_completion,
     "claude": claude_generate_completion,
     "llama": partial(llama_generate_completion, model="codellama:latest"),
-    "codellama-7b-code": partial(llama_generate_completion, model="codellama:7b-code"),
+    "codellama:7b-code": partial(llama_generate_completion, model="codellama:7b-code"),
     "deepseek-coder-v2:16b-lite-base-q4_0": partial(
         llama_generate_completion,
         model="deepseek-coder-v2:16b-lite-base-q4_0",

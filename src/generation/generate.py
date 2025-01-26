@@ -10,6 +10,9 @@ from src.generation.dummy import generate_completion as dummy_generate_completio
 from src.generation.gemini import generate_completion as gemini_generate_completion
 from src.generation.gpt import generate_completion as gpt_generate_completion
 from src.generation.llama import generate_completion as llama_generate_completion
+from src.generation.remote_model import (
+    generate_completion as remote_model_generate_completion,
+)
 
 MODELS = {
     "gpt": gpt_generate_completion,
@@ -21,6 +24,9 @@ MODELS = {
     "deepseek-coder-v2:16b-lite-base-q4_0": partial(
         llama_generate_completion,
         model="deepseek-coder-v2:16b-lite-base-q4_0",
+    ),
+    "DeepSeek-Coder-V2-Lite-Base": partial(
+        remote_model_generate_completion, model="DeepSeek-Coder-V2-Lite-Base"
     ),
 }
 
